@@ -12,16 +12,19 @@
   "dependencies": {
     "@mantine/core": "^7.12.2",
     "@mantine/hooks": "^7.12.2",
-    "@tauri-apps/api": ">=2.0.0-rc.0",
-    "@tauri-apps/plugin-global-shortcut": "^2.0.0-rc.1",
-    "@tauri-apps/plugin-shell": ">=2.0.0-rc.0",
+    "@tauri-apps/api": "^2.0.1",
+    "@tauri-apps/plugin-autostart": "~2",
+    "@tauri-apps/plugin-fs": "~2",
+    "@tauri-apps/plugin-global-shortcut": "^2.0.0",
+    "@tauri-apps/plugin-http": "~2",
+    "@tauri-apps/plugin-shell": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.26.2"
   },
   "devDependencies": {
-    "@spiriit/vite-plugin-svg-spritemap": "^2.2.4",
-    "@tauri-apps/cli": ">=2.0.0-rc.0",
+    "@tauri-apps/cli": "^2.0.1",
+    "@types/node": "^22.7.6",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.2.1",
@@ -29,6 +32,8 @@
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
     "typescript": "^5.2.2",
-    "vite": "^5.3.1"
-  }
+    "vite": "^5.3.1",
+    "vite-plugin-svg-icons": "^2.0.1"
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

@@ -1,15 +1,28 @@
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { defineConfig } from "vite";
+import { resolve } from "path";
 import react from "@vitejs/plugin-react";
-import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap'
 
-// @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   plugins: [
     react(),
-    VitePluginSvgSpritemap('./public/icons/*.svg')
+    createSvgIconsPlugin({
+      // Specify the icon folder to be cached
+      iconDirs: [resolve(process.cwd(), "public/icons")],
+      // Specify symbolId format
+      symbolId: "icon-[dir]-[name]",
+      svgoOptions: {
+        plugins: [{
+          name: "removeAttrs",
+          params: {
+            attrs: "fill"
+          }
+        }]
+      }
+    })
   ],
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
@@ -33,4 +46,12 @@ export default defineConfig(async () => ({
       ignored: ["**/src-tauri/**"],
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+        settings: resolve(__dirname, "settings.html")
+      }
+    }
+  }
 }));

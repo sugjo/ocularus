@@ -1,7 +1,7 @@
 use fuzzy_matcher::{skim::SkimMatcherV2, FuzzyMatcher};
 use serde::{Deserialize, Serialize};
 use serde_json::json;
-use std::{collections::HashMap, io};
+use std::{collections::HashMap, env::temp_dir, io};
 use tauri::WebviewWindow;
 use walkdir::WalkDir;
 
@@ -48,7 +48,9 @@ pub fn search(_: &WebviewWindow, value: &str, paths: &str) -> io::Result<String>
         }
     }
 
-    result.sort_by(|a,b| b.score.cmp(&a.score));
+    println!("{:?}", temp_dir());
+
+    result.sort_by(|a, b| b.score.cmp(&a.score));
 
     Ok(json!(&result).to_string())
 }

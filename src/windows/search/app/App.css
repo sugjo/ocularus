@@ -1,0 +1,13 @@
+#root, body {
+  --mantine-color-body: transparent;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+	z-index: 400;
+}

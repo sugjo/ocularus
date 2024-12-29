@@ -5,8 +5,8 @@ export const General = () => {
         <>
             <SearchPath />
             <GeneralSettings />
-            <Update />
-            <ResetAndRestore />
+            {/* <Update /> */}
+            {/* <ResetAndRestore /> */}
         </>
     )
 }

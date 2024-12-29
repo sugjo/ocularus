@@ -1,4 +1,4 @@
-import { Affix, Button, Checkbox, Drawer, Fieldset, Flex, Grid, ScrollArea, Stack, Tabs } from "@mantine/core";
+import { Affix, Button, Checkbox, Drawer, Fieldset, Flex, Grid, ScrollArea, Stack, Tabs, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 import { Icon } from "../../../utils/Icon";
@@ -11,7 +11,7 @@ type Props = {
 
 export const SearchPath = ({ }: Props) => {
     const [opened, { open, close }] = useDisclosure(false);
-    const [activeTab, setActiveTab] = useState<string | null>('first');
+    const [activeTab, setActiveTab] = useState<string | null>("main");
 
     return (
         <>
@@ -33,30 +33,42 @@ export const SearchPath = ({ }: Props) => {
                     >
                         <Drawer.Header>
                             <Stack w={"100%"}>
-                                <Flex>
+                                <Flex align={"center"}>
                                     <Drawer.Title>Редактор путей поиска</Drawer.Title>
                                     <Drawer.CloseButton />
                                 </Flex>
-                                <Button variant="outline" onClick={() => setActiveTab("new")}>Добавить новый</Button>
-                                <Tabs.List grow>
+                                <Tabs.List display={"none"} defaultValue="main" grow>
                                     <Tabs.Tab value="main">Обзор</Tabs.Tab>
-                                    <Tabs.Tab value="configure">Настройка</Tabs.Tab>
+                                    <Tabs.Tab value="edit">Настройка</Tabs.Tab>
                                     <Tabs.Tab value="new">Новый</Tabs.Tab>
                                 </Tabs.List>
                             </Stack>
                         </Drawer.Header>
                         <Drawer.Body>
                             <Tabs.Panel value="main">
-                                Пусто, добавьте хотя-бы один...
+                                <Button w={"100%"} mb={"lg"} variant="outline" onClick={() => setActiveTab("new")}>Добавить новый</Button>
+                                <Text>Пусто, добавьте хотя-бы один...</Text>
+                                <Flex justify={"space-between"} align={"center"}>
+                                    Test
+                                    <Button onClick={() => setActiveTab("edit")}>Редактировать</Button>
+                                </Flex>
                             </Tabs.Panel>
-                            <Tabs.Panel value="configure">
-                                <Affix position={{ bottom: 40, right: 40 }} style={{ display: activeTab == "second" ? "block" : "none" }}>
-                                    <Button
-                                        variant="outline"
-                                        onClick={() => setActiveTab("first")}
-                                    >
-                                        Назад
-                                    </Button>
+                            <Tabs.Panel value="edit">
+                                <Affix position={{ bottom: 40, right: 40 }} style={{ display: activeTab == "edit" ? "block" : "none" }}>
+                                    <Flex gap={5}>
+                                        <Button
+                                            variant="outline"
+                                            onClick={() => setActiveTab("main")}
+                                        >
+                                            Изменить
+                                        </Button>
+                                        <Button
+                                            variant="outline"
+                                            onClick={() => setActiveTab("main")}
+                                        >
+                                            Назад
+                                        </Button>
+                                    </Flex>
                                 </Affix>
                                 Настройка
                             </Tabs.Panel>
@@ -65,15 +77,15 @@ export const SearchPath = ({ }: Props) => {
                                     <Flex gap={5} >
                                         <Button
                                             variant="outline"
-                                            onClick={() => setActiveTab("first")}
+                                            onClick={() => setActiveTab("main")}
                                         >
-                                            Отмена
+                                            Создать
                                         </Button>
                                         <Button
                                             variant="outline"
-                                            onClick={() => setActiveTab("first")}
+                                            onClick={() => setActiveTab("main")}
                                         >
-                                            Создать
+                                            Отмена
                                         </Button>
                                     </Flex>
                                 </Affix>

@@ -30,6 +30,11 @@ pub fn create(app: &mut App) {
 
         app.global_shortcut().register(ctrl_n_shortcut).unwrap();
     }
+    let window = app.get_webview_window("main").unwrap();
+
+    window.show().unwrap_or({
+        window.hide().unwrap();
+    });
 }
 
 pub fn create_focus_handler(app: &mut App) {
@@ -39,11 +44,8 @@ pub fn create_focus_handler(app: &mut App) {
     window.on_window_event(move |event| match event {
         tauri::WindowEvent::Focused(focused) => {
             // hide window whenever it loses focus
-            if window_to_toggle.is_devtools_open() {
-                return;
-            }
             if !focused {
-                // set_toggle(&window_to_toggle, false);
+                set_toggle(&window_to_toggle, false);
             }
         }
         _ => {}

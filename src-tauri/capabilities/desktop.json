@@ -8,6 +8,8 @@
   "permissions": [
     "global-shortcut:allow-is-registered",
     "global-shortcut:allow-register",
-    "global-shortcut:allow-unregister"
+    "global-shortcut:allow-unregister",
+    "autostart:default",
+    "autostart:default"
   ]
 }
