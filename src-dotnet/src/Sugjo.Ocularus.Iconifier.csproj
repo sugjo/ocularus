@@ -8,6 +8,9 @@
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
     <AssemblyName>Iconifier</AssemblyName>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
