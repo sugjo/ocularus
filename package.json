@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "extractor:dev": "dotnet publish -o ./src-tauri/binaries/ ./src-icon-parser -c Debug",
+    "extractor:build": "dotnet publish -o ./src-tauri/binaries/ ./src-icon-parser -c Release",
     "preview": "vite preview",
     "tauri": "tauri"
   },

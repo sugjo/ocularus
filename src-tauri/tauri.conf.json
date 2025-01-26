@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "identifier": "com.ocularus.app",
   "build": {
-    "beforeDevCommand": "yarn dev",
+    "beforeDevCommand": "yarn extractor:dev && yarn dev",
     "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "yarn build",
+    "beforeBuildCommand": "yarn extractor:build && yarn build",
     "frontendDist": "../dist"
   },
   "app": {
