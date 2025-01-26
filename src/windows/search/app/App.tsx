@@ -3,10 +3,12 @@ import "./App.css";
 import { Layout } from "./Layout";
 import { ResultList } from "../widgets/result-list";
 import { InputBar, inputBarModel } from "../widgets/input-bar";
+import { useInit } from "./lib/useInit";
 
 const { useSearch } = inputBarModel;
 
 function App() {
+  useInit();
   const { prompt, result, search } = useSearch();
   const isResultVisible = Boolean(prompt);
 

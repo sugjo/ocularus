@@ -1,4 +1,5 @@
 use tauri::App;
+use tauri::Emitter;
 use tauri::Manager;
 use tauri::WebviewWindow;
 
@@ -11,9 +12,6 @@ pub fn create(app: &mut App) {
 
         let ctrl_n_shortcut = Shortcut::new(Some(Modifiers::ALT), Code::Space);
         let window = app.get_webview_window("main").unwrap();
-
-        window.show().unwrap();
-        window.hide().unwrap();
 
         app.handle()
             .plugin(
@@ -30,11 +28,6 @@ pub fn create(app: &mut App) {
 
         app.global_shortcut().register(ctrl_n_shortcut).unwrap();
     }
-    let window = app.get_webview_window("main").unwrap();
-
-    window.show().unwrap_or({
-        window.hide().unwrap();
-    });
 }
 
 pub fn create_focus_handler(app: &mut App) {
@@ -53,12 +46,15 @@ pub fn create_focus_handler(app: &mut App) {
 }
 
 fn toggle(window: &WebviewWindow) {
-    if window.is_visible().unwrap() {
+    let is_visible = window.is_visible().unwrap();
+
+    if is_visible {
         window.hide().unwrap();
         window.eval("location.reload()").unwrap();
     } else {
         window.show().unwrap();
         window.set_focus().unwrap();
+        window.emit("toggle", is_visible).unwrap();
     }
 }
 

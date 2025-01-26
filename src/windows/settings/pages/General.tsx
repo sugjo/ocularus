@@ -1,4 +1,4 @@
-import { GeneralSettings, ResetAndRestore, SearchPath, Update } from "../widgets";
+import { GeneralSettings, SearchPath } from "../widgets";
 
 export const General = () => {
     return (
